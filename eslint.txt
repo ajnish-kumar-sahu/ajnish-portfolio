@@ -1,0 +1,37 @@
+
+> vite-react-typescript-starter@0.0.0 lint
+> eslint .
+
+
+C:\Users\ajnis\code space\ajnish-portfolio\src\components\Chatbot\AutoResizeTextarea.tsx
+  51:8  warning  React Hook useEffect has a missing dependency: 'adjustHeight'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\ajnis\code space\ajnish-portfolio\src\components\Chatbot\ChatbotWidget.tsx
+  107:14  error  'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\ajnis\code space\ajnish-portfolio\src\components\Sections\Contact.tsx
+  72:15  error  'data' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\ajnis\code space\ajnish-portfolio\src\components\Sections\Projects.tsx
+  93:19  error  'isCardVisible' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\ajnis\code space\ajnish-portfolio\src\components\Sections\Testimonials.tsx
+  100:19  error  'isCardVisible' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\ajnis\code space\ajnish-portfolio\src\contexts\ThemeContext.tsx
+  11:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\ajnis\code space\ajnish-portfolio\src\services\chatbotService.ts
+  163:42  error  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+  163:74  error  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+  189:15  error  'errorData' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  387:29  error  'message' is defined but never used             @typescript-eslint/no-unused-vars
+  481:31  error  'message' is defined but never used             @typescript-eslint/no-unused-vars
+
+C:\Users\ajnis\code space\ajnish-portfolio\src\types\chatbot.ts
+  30:17  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  31:11  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  32:13  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+Γ£û 14 problems (12 errors, 2 warnings)
+

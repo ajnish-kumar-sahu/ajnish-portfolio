@@ -75,11 +75,14 @@ TECHNICAL SKILLS:
 - Problem Solving (82% proficiency) - Analytical thinking and systematic approach
 - Computer Science Fundamentals (88% proficiency) - Strong foundation
 
-FEATURED PROJECTS:
-1. Assignment Cover Generator - Web application using HTML, CSS, JavaScript for generating professional assignment covers
-2. Monthly Item List Management System - Comprehensive C++ inventory management system with CRUD operations
-3. Personal Portfolio Website - Modern, responsive portfolio with interactive design
-4. Programming Practice Solutions - Collection of algorithmic solutions in Java, C, and C++
+FEATURED PROJECTS & OFFERINGS:
+1. Assignment Cover Generator - Web app using HTML, CSS, JS for generating professional covers
+2. Monthly Item List Management System - Comprehensive C++ inventory system with CRUD operations
+3. BCA Project Templates Pack - Complete project setups & schemas for BCA students
+4. Advanced C++ DSA Library - High-performance data structures and algorithm library
+5. Modern React UI Kit - The glassmorphic animated components used in this portfolio
+6. 1-on-1 Code Mentorship - Live video consultation for debugging and architecture
+7. Custom Digital Marketplace - Built into portfolio allowing clients to purchase premium features
 
 EDUCATION & BACKGROUND:
 - Currently pursuing BCA at Vinoba Bhave University (2023-2026 expected)
@@ -132,6 +135,10 @@ Remember: You represent a dedicated student who is passionate about programming 
     achievements: {
       keywords: ['achievement', 'accomplish', 'success', 'award', 'recognition', 'milestone', 'competitive', 'won'],
       weight: 0.8
+    },
+    marketplace: {
+      keywords: ['buy', 'purchase', 'marketplace', 'buy now', 'pricing', 'hire', 'service', 'premium', 'shop'],
+      weight: 1.2
     },
     tools: {
       keywords: ['tool', 'framework', 'library', 'ide', 'software', 'environment', 'platform'],
@@ -345,9 +352,9 @@ Remember: You represent a dedicated student who is passionate about programming 
       switch (primaryIntent) {
         case 'skills':
         case 'specific_tech':
-          return this.getSkillsResponse(message);
+          return this.getSkillsResponse();
         case 'projects':
-          return this.getProjectsResponse(message);
+          return this.getProjectsResponse();
         case 'education':
           return this.getEducationResponse();
         case 'contact':
@@ -356,6 +363,8 @@ Remember: You represent a dedicated student who is passionate about programming 
           return this.getExperienceResponse();
         case 'achievements':
           return this.getAchievementsResponse();
+        case 'marketplace':
+          return this.getMarketplaceResponse();
         case 'personal':
           return this.getPersonalResponse();
         default:
@@ -384,7 +393,7 @@ Remember: You represent a dedicated student who is passionate about programming 
     return responses[Math.floor(Math.random() * responses.length)];
   }
 
-  private getSkillsResponse(message: string): string {
+  private getSkillsResponse(): string {
     return `💻 **Technical Skills & Expertise**
 
 **Primary Programming Languages:**
@@ -475,38 +484,51 @@ I have **78% proficiency** in modern web technologies!
 I enjoy creating visually appealing and functional web experiences!`;
     }
 
-    return this.getSkillsResponse(message);
+    return this.getSkillsResponse();
   }
 
-  private getProjectsResponse(message: string): string {
-    return `🚀 **Featured Projects Portfolio**
+  private getProjectsResponse(): string {
+    return `### **🚀 Featured Projects Portfolio**
 
-Here are some projects I'm proud of:
+Here are some projects I'm particularly proud of:
 
-**1. Assignment Cover Generator** 🎨
-→ Java Swing application for creating professional assignment covers
-→ Features: Customizable templates, auto-formatting, export options
-→ Tech: Java, Swing, File I/O
-→ Impact: Helps students save time on assignment presentation
+**1. 🎨 Assignment Cover Generator**
+- **Type**: Java Swing Application
+- **Features**: Customizable templates, auto-formatting, export outputs
+- **Impact**: Helps students save hours on assignment documentation!
 
-**2. Monthly Item List Management System** 📊
-→ Comprehensive inventory management solution
-→ Features: CRUD operations, data persistence, search functionality
-→ Tech: C++, File handling, Data structures
-→ Impact: Efficient tracking and organization of monthly supplies
+**2. 📊 Item List Management System**
+- **Type**: Complete Inventory Solution
+- **Tech Stack**: \`C++\`, File Handling, Data Structures
+- **Features**: CRUD workflow, data persistence, modular search
 
-**3. Personal Portfolio Website** 🌟
-→ Modern, responsive portfolio showcase
-→ Features: Interactive UI, project gallery, contact form
-→ Tech: HTML5, CSS3, JavaScript
-→ Impact: Professional online presence
+**3. 🛒 Built-In Developer Marketplace**
+- **Type**: Digital Storefront
+- **Tech Stack**: \`React\`, \`Framer Motion\`, \`TailwindCSS\`
+- **Impact**: A premium feature integration on my portfolio for users to buy my custom templates!
 
-**4. Programming Practice Solutions** 💡
-→ Collection of algorithmic implementations
-→ Languages: Java, C, C++
-→ Topics: Data structures, sorting, searching, problem-solving
+**4. 🌟 Programming Practice Solutions** 
+- **Type**: Algorithmic Codebase
+- **Languages**: \`Java\`, \`C\`, \`C++\`
+- **Details**: Hundreds of optimized sorting, searching, and structural solutions
 
-Each project demonstrates practical application of programming concepts and commitment to quality code. Want to know more about any specific project?`;
+Each project demonstrates a practical application of core fundamental programming logic. Want to hear more about the tech-stack used on any of these?`;
+  }
+
+  private getMarketplaceResponse(): string {
+    return `### **🛒 The Digital Marketplace**
+
+Did you know my portfolio has a live **Marketplace**? 
+
+I offer premium, handcrafted digital products and UI configurations tailored for developers and businesses. 
+
+**Available Offerings:**
+- 🖼️ **Premium Portfolio Templates**
+- 🎨 **Ready-to-use Component Libraries**
+- ⚙️ **Custom Code Reviews & Mentorship**
+- 🤝 **Freelance Service Bookings**
+
+*You can navigate to the Marketplace page via the main top-menu to purchase any of these directly!*`;
   }
 
   private getEducationResponse(): string {
@@ -713,24 +735,24 @@ I believe in writing code that's not just functional, but also clean, efficient,
         unaskedTopics.slice(0, 3).map(t => topicLabels[t]).join('\n');
     }
 
-    return `👋 **Hello! I'm Ajnish Kumar's Portfolio Assistant**
+    return `### 👋 **Hello! I'm Ajnish Kumar's AI Assistant**
 
-I can help you discover:
+I am trained specifically on Ajnish's resume, codebase, and experience. I can help you discover:
 
-💻 **Technical Skills** - Programming languages, frameworks, and proficiencies
-🚀 **Projects** - Completed work and practical applications  
-🎓 **Education** - Academic background and specializations
-💼 **Experience** - Development journey and achievements
-📬 **Contact** - How to reach out for opportunities
+- 💻 **Technical Skills** - Programming languages and proficiencies
+- 🚀 **Projects** - Custom apps like the Assignment Generator
+- 🛒 **Marketplace** - Premium features you can purchase from him!
+- 🎓 **Education** - Academic background
+- 📬 **Contact** - How to reach out directly
 
-**About Ajnish:**
-A dedicated BCA student specializing in Java, C++, and web development. Passionate about building practical solutions and continuously learning new technologies.
+**A Quick Overview of Ajnish:**
+A dedicated BCA student specializing in \`Java\`, \`C++\`, and dynamic web development. Passionate about building practical solutions and creating highly-interactive user experiences.
 
-**Quick Facts:**
-• 85% proficiency in Java
-• 12+ completed projects
-• 2+ years of programming experience
-• Available for internships and collaborations
+**Key Highlights:**
+- **85%** proficiency in Java
+- Built **12+** sophisticated projects
+- Operates a live freelance **Marketplace**
+- Available for fast-paced internships!
 
 What would you like to explore? Feel free to ask specific questions!${suggestions}`;
   }

@@ -90,7 +90,7 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isVisible, featured = false }) => {
-  const [cardRef, isCardVisible] = useIntersectionObserver({ threshold: 0.2 });
+  const [cardRef] = useIntersectionObserver({ threshold: 0.2 });
 
   const categoryColors = {
     web: 'from-blue-600 to-cyan-500',
@@ -108,14 +108,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isVisible, fe
   return (
     <div
       ref={cardRef}
-      className={`group bg-white dark:bg-gray-800/50 rounded-2xl border border-gray-200 dark:border-gray-700/50 hover:shadow-2xl hover:shadow-blue-500/10 dark:hover:shadow-blue-500/5 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-500 overflow-hidden transform hover:-translate-y-2 ${
+      className={`group neon-glow glass rounded-2xl border border-gray-200 dark:border-gray-700/50 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-500 transform hover:-translate-y-2 ${
         featured ? 'lg:col-span-1' : ''
       } ${
         isVisible ? `opacity-100 translate-y-0 delay-${index * 100}` : 'opacity-0 translate-y-8'
       }`}
     >
       {/* Project Header */}
-      <div className={`h-32 bg-gradient-to-r ${categoryColors[project.category]} relative overflow-hidden`}>
+      <div className={`h-32 bg-gradient-to-r rounded-t-2xl ${categoryColors[project.category]} relative overflow-hidden`}>
         <div className="absolute inset-0 bg-black/20" />
         <div className="absolute inset-0 flex items-center justify-center">
           <Folder className="w-12 h-12 text-white/80" />

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Moon, Sun, ChevronDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Menu, X, Moon, Sun, ChevronDown, User } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useScrollSpy } from '../../hooks/useScrollSpy';
 import { navigationItems, personalInfo } from '../../data/portfolio';
@@ -103,6 +104,19 @@ export const Header: React.FC = () => {
 
             {/* Theme Toggle & Mobile Menu with Enhanced Design */}
             <div className="flex items-center space-x-1.5 sm:space-x-2.5">
+              
+              {/* User Profile Login */}
+              <Link
+                to="/profile"
+                className="relative p-1.5 sm:p-2 lg:p-2.5 rounded-lg sm:rounded-xl lg:rounded-2xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-xl border border-gray-200/30 dark:border-gray-700/30 text-gray-700 dark:text-gray-300 hover:scale-110 active:scale-95 transition-all duration-300 shadow-lg group overflow-hidden"
+                aria-label="User Profile"
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-purple-400/20 to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="relative z-10 block transition-transform duration-500">
+                  <User size={16} className="sm:w-[18px] sm:h-[18px] lg:w-5 lg:h-5" />
+                </span>
+              </Link>
+              
               {/* Theme Toggle Button */}
               <button
                 onClick={toggleTheme}

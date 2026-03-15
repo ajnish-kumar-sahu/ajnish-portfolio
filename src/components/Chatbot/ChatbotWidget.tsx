@@ -1,9 +1,11 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { MessageCircle, X, Send, Minimize2, Maximize2, Bot, User, Sparkles, HelpCircle, RefreshCw, Volume2, VolumeX } from 'lucide-react';
-import { ChatMessage } from '../../types/chatbot';
+import { Bot, HelpCircle, Maximize2, MessageCircle, Minimize2, RefreshCw, Send, Sparkles, User, Volume2, VolumeX, X } from 'lucide-react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { chatbotService } from '../../services/chatbotService';
-import { TypingIndicator } from './TypingIndicator';
+import { ChatMessage } from '../../types/chatbot';
 import { AutoResizeTextarea } from './AutoResizeTextarea';
+import { TypingIndicator } from './TypingIndicator';
 
 export function ChatbotWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +17,7 @@ export function ChatbotWidget() {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: '1',
-      content: "Hi there! I'm Ajnish's AI assistant. I'm here to help you explore his portfolio, skills, and projects. What would you like to discover?",
+      content: `### 👋 **Welcome to Ajnish's AI Assistant!**\n\nI can help you explore Ajnish's resume, skills, and experience! Here are a few things you can ask me about:\n\n- 💻 **Tech Stack & Skills**\n- 🚀 **Past Projects**\n- 🛒 **Digital Marketplace**\n- 📬 **Contact Info**\n\nWhat would you like to know today?`,
       sender: 'assistant',
       timestamp: new Date(),
     },
@@ -140,7 +142,7 @@ export function ChatbotWidget() {
     setMessages([
       {
         id: '1',
-        content: "Hi there! I'm Ajnish's AI assistant. I'm here to help you explore his portfolio, skills, and projects. What would you like to discover?",
+        content: `### 👋 **Welcome to Ajnish's AI Assistant!**\n\nI can help you explore Ajnish's resume, skills, and experience! Here are a few things you can ask me about:\n\n- 💻 **Tech Stack & Skills**\n- 🚀 **Past Projects**\n- 🛒 **Digital Marketplace**\n- 📬 **Contact Info**\n\nWhat would you like to know today?`,
         sender: 'assistant',
         timestamp: new Date(),
       },
@@ -173,20 +175,24 @@ export function ChatbotWidget() {
       <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
         <button
           onClick={() => setIsOpen(true)}
-          className="group relative bg-gradient-to-r from-blue-600 via-teal-600 to-cyan-600 text-white p-4 rounded-full shadow-2xl hover:shadow-blue-500/30 transform hover:scale-110 transition-all duration-300 animate-pulse hover:animate-none"
+          className="group relative backdrop-blur-md bg-white/10 dark:bg-gray-900/40 border border-white/20 dark:border-white/10 text-white p-4 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.5)] dark:shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_25px_rgba(59,130,246,0.6)] transform hover:scale-110 transition-all duration-500 overflow-hidden"
           aria-label="Open chat assistant"
         >
-          <MessageCircle size={24} className="relative z-10" />
+          {/* Base Gradient that spins smoothly */}
+          <div className="absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent_0_340deg,rgba(59,130,246,1)_360deg)] animate-[spin_3s_linear_infinite] opacity-50"></div>
 
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 opacity-75 animate-ping"></div>
+          {/* Inner masking to create an edge glow */}
+          <div className="absolute inset-[2px] rounded-full bg-gradient-to-tr from-blue-600 to-teal-500 dark:from-blue-700 dark:to-teal-600 z-0"></div>
 
-          <div className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center animate-bounce">
-            <Sparkles size={12} className="text-white" />
+          <MessageCircle size={24} className="relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all duration-300" />
+
+          <div className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-tr from-pink-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg border-2 border-white dark:border-gray-900 z-20 group-hover:animate-pulse">
+            <Sparkles size={10} className="text-white" />
           </div>
 
-          <div className="absolute bottom-full right-0 mb-3 px-3 py-2 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none shadow-xl">
+          <div className="absolute bottom-full right-0 mb-3 px-3 py-2 bg-black/80 backdrop-blur-sm text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none shadow-xl border border-white/10 translate-y-2 group-hover:translate-y-0">
             Chat with Ajnish's AI Assistant
-            <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900 dark:border-t-gray-700"></div>
+            <div className="absolute top-full right-5 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-transparent border-t-black/80"></div>
           </div>
         </button>
       </div>
@@ -268,7 +274,7 @@ export function ChatbotWidget() {
                   </div>
 
                   <div
-                    className={`max-w-[75%] p-3 rounded-2xl shadow-sm transition-all duration-200 ${
+                    className={`max-w-[85%] p-3.5 rounded-2xl shadow-sm transition-all duration-200 ${
                       message.sender === 'user'
                         ? 'bg-gradient-to-r from-blue-500 to-teal-500 text-white rounded-br-sm'
                         : message.isTyping
@@ -280,8 +286,10 @@ export function ChatbotWidget() {
                       <TypingIndicator />
                     ) : (
                       <>
-                        <div className="text-sm whitespace-pre-wrap leading-relaxed chatbot-message">{message.content}</div>
-                        <div className={`text-xs mt-2 opacity-70 ${
+                        <div className="text-[13px] sm:text-sm leading-[1.6] chatbot-message text-gray-800 dark:text-gray-200">
+                          <ReactMarkdown remarkPlugins={[remarkGfm]}>{message.content}</ReactMarkdown>
+                        </div>
+                        <div className={`text-[10px] mt-2 opacity-70 flex justify-end ${
                           message.sender === 'user' ? 'text-blue-100' : 'text-gray-500 dark:text-gray-400'
                         }`}>
                           {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}

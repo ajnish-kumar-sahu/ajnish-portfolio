@@ -1,4 +1,4 @@
-import { Skill, Project, SocialLink, PersonalInfo, Stats, NavigationItem } from '../types';
+import { Skill, Project, SocialLink, PersonalInfo, Stats, NavigationItem, MarketplaceItem, ServiceItem } from '../types';
 
 export const personalInfo: PersonalInfo = {
   name: 'Ajnish Kumar',
@@ -23,6 +23,8 @@ export const navigationItems: NavigationItem[] = [
   { id: 'about', label: 'About', href: '#about' },
   { id: 'skills', label: 'Skills', href: '#skills' },
   { id: 'projects', label: 'Projects', href: '#projects' },
+  { id: 'services', label: 'Services', href: '#services' },
+  { id: 'marketplace', label: 'Marketplace', href: '#marketplace' },
   { id: 'contact', label: 'Contact', href: '#contact' },
 ];
 
@@ -75,6 +77,37 @@ export const skills: Skill[] = [
     proficiency: 88,
     category: 'programming',
   },
+];
+
+export const services: ServiceItem[] = [
+  {
+    id: 'web-dev',
+    title: 'Custom Web Development',
+    description: 'I design and build dynamic, highly responsive websites from scratch using modern web technologies tailored perfectly to your business needs.',
+    icon: 'Sparkles',
+    features: ['Responsive Design', 'SEO Optimized', 'Modern UI/UX', 'Cross-browser Compatibility']
+  },
+  {
+    id: 'java-dev',
+    title: 'Java Applications',
+    description: 'Robust desktop applications and utility systems built using Java, focusing on object-oriented logic and secure architecture.',
+    icon: 'Code2',
+    features: ['Swing GUI Apps', 'System Modules', 'Data Processing', 'API Integrations']
+  },
+  {
+    id: 'cpp-dev',
+    title: 'C/C++ System Programming',
+    description: 'Performance-critical applications, customized inventory systems, and complex data structure implementations designed for maximum efficiency.',
+    icon: 'Zap',
+    features: ['Inventory Systems', 'Algorithmic Solutions', 'Memory Optimization', 'File Handling']
+  },
+  {
+    id: 'mentorship',
+    title: 'Code Reviews & Mentorship',
+    description: 'Comprehensive code reviews and 1-on-1 basic programming mentorship for beginner developers and students.',
+    icon: 'GraduationCap',
+    features: ['Code Optimization', 'Best Practices', 'Debugging Help', 'Architecture Advice']
+  }
 ];
 
 export const projects: Project[] = [
@@ -166,4 +199,97 @@ export const typingTexts = [
   'Tech Innovator',
   'Future Engineer',
   'Creative Coder',
+];
+
+export const marketplaceItems: MarketplaceItem[] = [
+  {
+    id: 'assignment-cover-generator',
+    title: 'Assignment Cover Generator',
+    description: 'A comprehensive tool that helps students create professional-looking assignment covers with various templates, automatic formatting, and customizable fields.',
+    price: 'Free',
+    url: 'https://ajnish-kumar-sahu.github.io/assignment-cover-generator/',
+    features: [
+      '7 Premium Templates',
+      'Auto Theme Mode (Dark/Light)',
+      'Real-time Preview',
+      'Download as PDF/Image',
+      'Interactive Particle Background'
+    ],
+    badge: 'Trending',
+  },
+  {
+    id: 'bca-project-bundle',
+    title: 'BCA Project Templates Pack',
+    description: 'A complete starter pack with pre-configured project setups, database schemas, and documentation templates designed for BCA students.',
+    price: '$15.00',
+    url: '#',
+    features: [
+      '5 Complete Project Scaffolds',
+      'Ready-to-use MySQL Schemas',
+      'Synopsis & SRS Word Templates',
+      'Diagrams (DFD, ER, Flowcharts)',
+      'Lifetime Updates'
+    ],
+    badge: 'Popular',
+  },
+  {
+    id: 'cpp-dsa-library',
+    title: 'Advanced C++ DSA Library',
+    description: 'A heavily optimized, plug-and-play C++ library containing pre-written data structures like AVL Trees, Graphs, and Heaps with built-in sorting algorithms.',
+    price: '$9.99',
+    url: '#',
+    features: [
+      'Zero-dependency Headers',
+      'Memory Leak Tested',
+      'O(1) & O(log n) Optimized Methods',
+      'Comprehensive Documentation',
+      '100+ Example Use Cases'
+    ],
+    badge: 'Code Asset',
+  },
+  {
+    id: 'react-premium-ui',
+    title: 'Modern React UI Kit',
+    description: 'The exact glassmorphic, interactive, and Framer Motion animated components used in this very portfolio, ready to drop into your own React projects.',
+    price: '$25.00',
+    url: '#',
+    features: [
+      '20+ Custom Components',
+      'Framer Motion Animations included',
+      'Dark/Light Mode Ready',
+      'Tailwind Config File',
+      'Typescript Interfaces'
+    ],
+    badge: 'Premium',
+  },
+  {
+    id: 'mentorship-session',
+    title: '1-on-1 Code Mentorship (1 Hr)',
+    description: 'Book a 60-minute personal consultation where we can pair-program, review your codebase, debug an issue, or discuss system architecture.',
+    price: '$30.00',
+    url: '#',
+    features: [
+      'Live Video Session',
+      'Targeted Debugging',
+      'Architecture Planning',
+      'Best Practices Review',
+      'Recorded Session Link'
+    ],
+    badge: 'Service',
+  },
+  {
+    id: 'portfolio-ai-prompts',
+    title: 'Portfolio AI Prompts Masterclass',
+    description: 'The exact step-by-step AI prompts used to prompt-engineer and build this entire premium glassmorphic React portfolio from scratch.',
+    price: '$9.00',
+    url: '#',
+    features: [
+      '100+ Master Prompts',
+      'UI/UX Engineering Prompts',
+      'Debugging & Refactoring Prompts',
+      'Component Generation Strategies',
+      'Full PDF & Notion Template'
+    ],
+    badge: 'Trending',
+  }
 ];

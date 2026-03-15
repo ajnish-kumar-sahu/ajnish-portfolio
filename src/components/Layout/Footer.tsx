@@ -1,5 +1,6 @@
 import React from 'react';
-import { ArrowUp, Heart, Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
+import { ArrowUp, Heart, Mail, Phone, MapPin, ExternalLink, Shield } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { personalInfo, socialLinks, navigationItems } from '../../data/portfolio';
 import { SocialIcons } from '../UI/SocialIcons';
 
@@ -216,6 +217,11 @@ export const Footer: React.FC = () => {
             <a href="#home" className="hover:text-blue-400 transition-colors duration-200">Terms of Service</a>
             <span className="text-gray-600">•</span>
             <a href="#home" className="hover:text-blue-400 transition-colors duration-200">Sitemap</a>
+            <span className="text-gray-600">•</span>
+            <Link to="/admin" className="hover:text-blue-400 transition-colors duration-200 flex items-center gap-1">
+              <Shield size={12} />
+              Admin
+            </Link>
             <span className="text-gray-600">•</span>
             <button onClick={handleScrollToTop} className="hover:text-blue-400 transition-colors duration-200">
               Back to Top ↑

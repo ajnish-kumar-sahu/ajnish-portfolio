@@ -52,6 +52,29 @@ export const Skills: React.FC = () => {
           </p>
         </div>
 
+        {/* Infinite Tech Marquee */}
+        <div className="mb-20 overflow-hidden relative w-full flex">
+          {/* Gradient masks for smooth fade in/out on edges */}
+          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white via-white/80 to-transparent dark:from-gray-900 dark:via-gray-900/80 dark:to-transparent z-10" />
+          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white via-white/80 to-transparent dark:from-gray-900 dark:via-gray-900/80 dark:to-transparent z-10" />
+
+          <div className="animate-marquee gap-8 items-center py-4">
+            {[
+              "React", "TypeScript", "Node.js", "Tailwind CSS", "Next.js", 
+              "Java", "C++", "Python", "SQL", "Git", "MongoDB", "Figma",
+              "React", "TypeScript", "Node.js", "Tailwind CSS", "Next.js", 
+              "Java", "C++", "Python", "SQL", "Git", "MongoDB", "Figma"
+            ].map((tech, i) => (
+              <div 
+                key={i} 
+                className="px-8 py-4 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 mx-4 whitespace-nowrap text-lg font-bold text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:border-purple-300 dark:hover:border-purple-600 transition-colors cursor-default select-none"
+              >
+                {tech}
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Skills Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skills.map((skill, index) => (

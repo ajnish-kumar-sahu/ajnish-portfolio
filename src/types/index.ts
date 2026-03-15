@@ -22,6 +22,14 @@ export interface Project {
   category: 'web' | 'mobile' | 'desktop' | 'academic';
 }
 
+export interface ServiceItem {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  features: string[];
+}
+
 export interface ContactFormData {
   name: string;
   email: string;
@@ -94,4 +102,15 @@ export interface SEOMeta {
   keywords: string[];
   ogImage?: string;
   canonical?: string;
+}
+
+export interface MarketplaceItem {
+  id: string;
+  title: string;
+  description: string;
+  price: string;
+  url: string;
+  features: string[];
+  badge: string;
+  imageUrl?: string;
 }
