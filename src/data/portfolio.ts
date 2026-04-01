@@ -21,6 +21,7 @@ export const stats: Stats = {
 export const navigationItems: NavigationItem[] = [
   { id: 'home', label: 'Home', href: '#home' },
   { id: 'about', label: 'About', href: '#about' },
+  { id: 'journey', label: 'Journey', href: '#journey' },
   { id: 'skills', label: 'Skills', href: '#skills' },
   { id: 'projects', label: 'Projects', href: '#projects' },
   { id: 'services', label: 'Services', href: '#services' },

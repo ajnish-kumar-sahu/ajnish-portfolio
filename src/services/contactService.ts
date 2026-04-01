@@ -96,9 +96,9 @@ export const contactService = {
 
     const stats = {
       total: data?.length || 0,
-      new: data?.filter(m => m.status === 'new').length || 0,
-      read: data?.filter(m => m.status === 'read').length || 0,
-      replied: data?.filter(m => m.status === 'replied').length || 0,
+      new: data?.filter((m: { status: string }) => m.status === 'new').length || 0,
+      read: data?.filter((m: { status: string }) => m.status === 'read').length || 0,
+      replied: data?.filter((m: { status: string }) => m.status === 'replied').length || 0,
     };
 
     return stats;

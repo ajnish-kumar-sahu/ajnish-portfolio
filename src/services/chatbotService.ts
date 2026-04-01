@@ -1,5 +1,5 @@
-import { ChatbotConfig, ChatbotResponse, PortfolioContext } from '../types/chatbot';
-import { personalInfo, skills, projects } from '../data/portfolio';
+import { ChatbotConfig, ChatbotResponse } from '../types/chatbot';
+
 
 // Security: Use environment variables for sensitive data
 const getApiConfig = (): ChatbotConfig | null => {
@@ -21,7 +21,6 @@ const getApiConfig = (): ChatbotConfig | null => {
 
 class ChatbotService {
   private config: ChatbotConfig | null;
-  private requestQueue: Map<string, AbortController> = new Map();
   private rateLimitTracker: { requests: number; resetTime: number } = { requests: 0, resetTime: 0 };
   private readonly MAX_REQUESTS_PER_MINUTE = 20;
   private conversationHistory: Array<{ role: string; content: string }> = [];
@@ -31,30 +30,7 @@ class ChatbotService {
     this.config = getApiConfig();
   }
 
-  private portfolioContext: PortfolioContext = {
-    personalInfo,
-    skills,
-    projects,
-    experience: [
-      'BCA Student at Vinoba Bhave University (2023-2026)',
-      'Specializing in Computer Science with focus on Java programming',
-      'Active in programming competitions and coding challenges',
-      'Building practical applications and academic projects',
-    ],
-    education: [
-      'Bachelor of Computer Applications (BCA) - Vinoba Bhave University',
-      'Specialization: Computer Science and Programming',
-      'Expected Graduation: 2026',
-      'Location: Hazaribagh, Jharkhand',
-    ],
-    achievements: [
-      'Completed 12+ programming projects',
-      'Proficient in Java, C/C++, and web technologies',
-      'Strong foundation in Data Structures and Algorithms',
-      'Active contributor to open-source projects',
-    ],
-    availability: 'Available for internships, collaborative projects, and freelance work',
-  };
+
 
   private systemPrompt = `You are Ajnish Kumar's professional portfolio assistant. You represent a BCA student and developer who is passionate about programming and web development.
 
@@ -193,7 +169,7 @@ Remember: You represent a dedicated student who is passionate about programming 
       });
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
+        await response.json().catch(() => ({}));
         
         switch (response.status) {
           case 401:

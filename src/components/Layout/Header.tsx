@@ -8,20 +8,11 @@ import { navigationItems, personalInfo } from '../../data/portfolio';
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const { theme, toggleTheme } = useTheme();
   const activeSection = useScrollSpy(navigationItems.map(item => item.id));
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (scrollTop / docHeight) * 100;
-      
-      setIsScrolled(scrollTop > 50);
-      setScrollProgress(progress);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -36,15 +27,13 @@ export const Header: React.FC = () => {
 
   return (
     <>
-      {/* Scroll Progress Bar */}
-      <div className="fixed top-0 left-0 right-0 z-[60] h-1 bg-gradient-to-r from-blue-600 via-indigo-600 to-teal-600 dark:from-blue-400 dark:via-indigo-400 dark:to-teal-400 transition-transform duration-150 origin-left" 
-           style={{ transform: `scaleX(${scrollProgress / 100})` }} />
+      {/* Scroll progress is handled by ScrollProgress UI component */}
       
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? 'bg-white/70 dark:bg-gray-900/70 backdrop-blur-2xl border-b border-gray-200/20 dark:border-gray-700/20 shadow-2xl shadow-gray-200/20 dark:shadow-black/20'
-            : 'bg-white/30 dark:bg-gray-900/30 backdrop-blur-sm'
+            ? 'bg-white/80 dark:bg-[#0e0e0e]/90 backdrop-blur-2xl border-b border-gray-200/20 dark:border-[#262626] shadow-2xl shadow-gray-200/20 dark:shadow-black/40'
+            : 'bg-transparent dark:bg-transparent backdrop-blur-sm'
         }`}
       >
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,9 +44,9 @@ export const Header: React.FC = () => {
                 onClick={() => handleNavClick('#home')}
                 className="relative text-2xl lg:text-3xl font-bold transition-all duration-300 hover:scale-105"
               >
-                <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-teal-600 dark:from-blue-400 dark:via-indigo-400 dark:to-teal-400 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
+                <span className="font-display bg-gradient-to-r from-blue-600 via-indigo-600 to-teal-600 dark:from-blue-400 dark:via-indigo-400 dark:to-teal-400 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto] tracking-tight">
                   {personalInfo.name.split(' ').map((word, index) => (
-                    <span key={index} className={index === 0 ? 'font-black' : 'font-light'}>
+                    <span key={index} className={index === 0 ? 'font-black' : 'font-medium'}>
                       {word}
                       {index === 0 && ' '}
                     </span>

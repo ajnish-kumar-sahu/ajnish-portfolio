@@ -17,7 +17,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 text-white relative overflow-hidden">
+    <footer className="bg-[#0a0a0a] border-t border-[#1a1a1a] text-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-teal-500/10" />
@@ -48,7 +48,7 @@ export const Footer: React.FC = () => {
 
             {/* Quick Stats */}
             <div className="grid grid-cols-2 gap-4 mb-8">
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 hover:bg-white/10 hover:border-blue-400/30 transition-all duration-300 transform hover:scale-105">
+              <div className="bg-[#131313] border border-[#262626] rounded-xl p-4 hover:border-[#494847] transition-all duration-300 transform hover:scale-105">
                 <div className="flex items-center space-x-2">
                   <span className="text-2xl">🎓</span>
                   <div>
@@ -57,7 +57,7 @@ export const Footer: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 hover:bg-white/10 hover:border-teal-400/30 transition-all duration-300 transform hover:scale-105">
+              <div className="bg-[#131313] border border-[#262626] rounded-xl p-4 hover:border-[#494847] transition-all duration-300 transform hover:scale-105">
                 <div className="flex items-center space-x-2">
                   <span className="text-2xl">📍</span>
                   <div>
@@ -71,8 +71,8 @@ export const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-white flex items-center">
-              <span className="w-1 h-6 bg-gradient-to-b from-blue-400 to-indigo-400 rounded-full mr-3" />
+            <h4 className="text-[10px] font-mono font-bold text-[#494847] uppercase tracking-[0.25em] mb-6 flex items-center">
+              <span className="w-1 h-4 bg-[#53ddfc] rounded-full mr-3" style={{ boxShadow: '0 0 8px #53ddfc' }} />
               Quick Links
             </h4>
             <nav className="space-y-3">
@@ -98,8 +98,8 @@ export const Footer: React.FC = () => {
 
           {/* Contact & Social - Enhanced Professional Design */}
           <div>
-            <h4 className="text-xl font-bold mb-6 text-white flex items-center">
-              <span className="w-1.5 h-8 bg-gradient-to-b from-indigo-400 via-blue-400 to-teal-400 rounded-full mr-3" />
+            <h4 className="text-[10px] font-mono font-bold text-[#494847] uppercase tracking-[0.25em] mb-6 flex items-center">
+              <span className="w-1 h-4 bg-[#ba9eff] rounded-full mr-3" style={{ boxShadow: '0 0 8px #ba9eff' }} />
               Let's Connect
             </h4>
 
@@ -108,7 +108,7 @@ export const Footer: React.FC = () => {
               {/* Email Card */}
               <a
                 href="mailto:ajnishkumar7070@gmail.com"
-                className="group block bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm border border-white/10 rounded-xl p-4 hover:bg-gradient-to-r hover:from-blue-500/10 hover:to-indigo-500/10 hover:border-blue-400/40 transition-all duration-300 transform hover:translate-x-1"
+                className="group block bg-[#131313] border border-[#262626] rounded-xl p-4 hover:border-[#494847] transition-all duration-300 transform hover:translate-x-1"
               >
                 <div className="flex items-center space-x-3">
                   <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -128,7 +128,7 @@ export const Footer: React.FC = () => {
               {personalInfo.phone && (
                 <a
                   href={`tel:${personalInfo.phone}`}
-                  className="group block bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm border border-white/10 rounded-xl p-4 hover:bg-gradient-to-r hover:from-teal-500/10 hover:to-emerald-500/10 hover:border-teal-400/40 transition-all duration-300 transform hover:translate-x-1"
+                  className="group block bg-[#131313] border border-[#262626] rounded-xl p-4 hover:border-[#494847] transition-all duration-300 transform hover:translate-x-1"
                 >
                   <div className="flex items-center space-x-3">
                     <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-teal-500/20 to-emerald-500/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -146,7 +146,7 @@ export const Footer: React.FC = () => {
               )}
 
               {/* Location Card */}
-              <div className="block bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm border border-white/10 rounded-xl p-4">
+              <div className="bg-[#131313] border border-[#262626] rounded-xl p-4">
                 <div className="flex items-center space-x-3">
                   <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-lg flex items-center justify-center">
                     <MapPin size={18} className="text-indigo-400" />
@@ -163,7 +163,7 @@ export const Footer: React.FC = () => {
 
             {/* Social Links - Enhanced */}
             <div>
-              <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Connect on Social</p>
+              <p className="text-[10px] font-mono font-bold text-[#494847] uppercase tracking-[0.25em] mb-4">Connect on Social</p>
               <div className="grid grid-cols-2 gap-3">
                 {socialLinks.map((social) => (
                   <a
@@ -171,7 +171,7 @@ export const Footer: React.FC = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center space-x-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg px-3 py-2.5 hover:bg-gradient-to-r hover:from-blue-500/10 hover:to-indigo-500/10 hover:border-blue-400/40 transition-all duration-300 transform hover:scale-105"
+                    className="group flex items-center space-x-2 bg-[#131313] border border-[#262626] rounded-lg px-3 py-2.5 hover:border-[#494847] transition-all duration-300 transform hover:scale-105"
                     aria-label={`Connect on ${social.name}`}
                   >
                     <SocialIcons
@@ -189,7 +189,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 py-8">
+        <div className="border-t border-[#1a1a1a] py-8">
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
             <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 text-sm text-gray-400">
               <p>&copy; {new Date().getFullYear()} {personalInfo.name}. All rights reserved.</p>
@@ -203,7 +203,8 @@ export const Footer: React.FC = () => {
             {/* Scroll to Top Button */}
             <button
               onClick={handleScrollToTop}
-              className="p-3 bg-gradient-to-r from-blue-600 via-indigo-600 to-teal-600 rounded-full hover:shadow-xl hover:shadow-blue-500/30 hover:scale-110 transition-all duration-300 group"
+              className="p-3 rounded-xl text-[#0e0e0e] hover:scale-110 transition-all duration-300 group"
+              style={{ background: 'linear-gradient(135deg, #53ddfc, #ba9eff)', boxShadow: '0 4px 20px rgba(83,221,252,0.3)' }}
               aria-label="Scroll to top"
             >
               <ArrowUp size={20} className="text-white group-hover:animate-bounce" />
@@ -211,7 +212,7 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Additional Links */}
-          <div className="mt-6 pt-6 border-t border-white/5 flex flex-wrap justify-center gap-6 text-sm text-gray-400">
+          <div className="mt-6 pt-6 border-t border-[#1a1a1a] flex flex-wrap justify-center gap-6 text-xs font-mono text-[#494847]">
             <a href="#home" className="hover:text-blue-400 transition-colors duration-200">Privacy Policy</a>
             <span className="text-gray-600">•</span>
             <a href="#home" className="hover:text-blue-400 transition-colors duration-200">Terms of Service</a>

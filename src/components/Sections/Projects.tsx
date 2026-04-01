@@ -1,194 +1,241 @@
-import React from 'react';
-import { ExternalLink, Github, Folder, Star } from 'lucide-react';
+import React, { useState } from 'react';
+import { ExternalLink, Github, Folder, Star, Filter, Layers, Globe2, Monitor, GraduationCap } from 'lucide-react';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { projects } from '../../data/portfolio';
 
+type ProjectCategory = 'all' | 'web' | 'desktop' | 'academic' | 'mobile';
+
+const CATEGORIES: { label: string; value: ProjectCategory; icon: React.ReactNode }[] = [
+  { label: 'All', value: 'all', icon: <Layers size={14} /> },
+  { label: 'Web', value: 'web', icon: <Globe2 size={14} /> },
+  { label: 'Desktop', value: 'desktop', icon: <Monitor size={14} /> },
+  { label: 'Academic', value: 'academic', icon: <GraduationCap size={14} /> },
+];
+
 export const Projects: React.FC = () => {
   const [ref, isVisible] = useIntersectionObserver({ threshold: 0.1 });
+  const [activeCategory, setActiveCategory] = useState<ProjectCategory>('all');
 
-  const featuredProjects = projects.filter(project => project.featured);
-  const otherProjects = projects.filter(project => !project.featured);
+  const filteredProjects = projects.filter(
+    (p) => activeCategory === 'all' || p.category === activeCategory
+  );
 
   return (
-    <section id="projects" className="py-20 bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-gray-800/50 dark:via-gray-900 dark:to-gray-800/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div ref={ref} className="text-center mb-16">
-          {/* Section Badge */}
-          <div
-            className={`inline-flex items-center px-4 py-2 rounded-full bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 text-sm font-medium mb-6 transition-all duration-700 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
-          >
-            <Folder size={16} className="mr-2" />
-            Portfolio
+    <section id="projects" className="py-32 bg-[#0e0e0e] relative overflow-hidden">
+      {/* Decorative Core Light */}
+      <div className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#ba9eff]/10 rounded-full blur-[120px]" />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+        <div ref={ref} className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="max-w-2xl">
+            {/* Section Badge */}
+            <div
+              className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#1a1919] border border-[#262626] text-[#ba9eff] text-xs font-bold font-mono tracking-widest uppercase mb-6 transition-all duration-700 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
+            >
+              <Folder size={14} />
+              Featured Works
+            </div>
+
+            <h2
+              className={`text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight font-display transition-all duration-700 delay-200 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
+            >
+              The 
+              <span className="italic text-[#53ddfc] mx-3">Project</span>
+              Matrix
+            </h2>
+            <p
+              className={`text-lg text-[#adaaaa] mt-6 max-w-xl transition-all duration-700 delay-300 font-sans ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
+            >
+              A curated collection of scalable web applications, performant desktop systems, and algorithmic academic research.
+            </p>
           </div>
 
-          {/* Section Title */}
-          <h2
-            className={`text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6 transition-all duration-700 delay-200 ${
+          {/* Category Filter Tabs */}
+          <div
+            className={`flex flex-wrap gap-2 transition-all duration-700 delay-400 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
-            Featured{' '}
-            <span className="bg-gradient-to-r from-teal-500 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-              Projects
-            </span>
-          </h2>
-
-          {/* Section Description */}
-          <p
-            className={`text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto transition-all duration-700 delay-300 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
-          >
-            Academic and personal projects demonstrating programming skills, problem-solving abilities, 
-            and practical application development.
-          </p>
+            {CATEGORIES.map((cat) => {
+              const isActive = activeCategory === cat.value;
+              return (
+                <button
+                  key={cat.value}
+                  onClick={() => setActiveCategory(cat.value)}
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 ${
+                    isActive
+                      ? 'bg-gradient-to-r from-[#ba9eff] to-[#8455ef] text-[#000000] shadow-[0_0_20px_rgba(186,158,255,0.3)]'
+                      : 'bg-[#131313] text-[#adaaaa] border border-[#262626] hover:bg-[#1a1919] hover:text-white'
+                  }`}
+                >
+                  {cat.icon}
+                  {cat.label}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Featured Projects */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-16">
-          {featuredProjects.map((project, index) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              index={index}
-              isVisible={isVisible}
-              featured
-            />
-          ))}
-        </div>
+        {/* Bento Grid Results */}
+        {filteredProjects.length === 0 ? (
+          <div className="text-center py-32 bg-[#131313] border border-[#262626] rounded-2xl">
+            <Filter className="mx-auto mb-4 text-[#494847]" size={48} />
+            <p className="text-xl font-semibold text-[#adaaaa]">No projects found in this matrix sector.</p>
+            <button
+              onClick={() => setActiveCategory('all')}
+              className="mt-6 px-6 py-3 bg-[#1a1919] border border-[#262626] text-white rounded-xl hover:bg-[#262626] transition-colors"
+            >
+              View All Projects
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[380px]">
+            {filteredProjects.map((project, index) => {
+              // Create an asymmetrical bento grid by making the first featured project span 2 columns and 2 rows
+              const isLargeBento = project.featured && index === 0;
+              const isHorizontal = project.featured && index === 1;
 
-        {/* Other Projects */}
-        {otherProjects.length > 0 && (
-          <>
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-              Other Projects
-            </h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              {otherProjects.map((project, index) => (
-                <ProjectCard
+              return (
+                <BentoProjectCard
                   key={project.id}
                   project={project}
-                  index={index + featuredProjects.length}
+                  index={index}
                   isVisible={isVisible}
+                  isLarge={isLargeBento}
+                  isHorizontal={isHorizontal}
                 />
-              ))}
-            </div>
-          </>
+              );
+            })}
+          </div>
         )}
       </div>
     </section>
   );
 };
 
-interface ProjectCardProps {
+interface BentoProjectCardProps {
   project: typeof projects[0];
   index: number;
   isVisible: boolean;
-  featured?: boolean;
+  isLarge?: boolean;
+  isHorizontal?: boolean;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, isVisible, featured = false }) => {
-  const [cardRef] = useIntersectionObserver({ threshold: 0.2 });
+const BentoProjectCard: React.FC<BentoProjectCardProps> = ({ 
+  project, 
+  index, 
+  isVisible, 
+  isLarge = false,
+  isHorizontal = false 
+}) => {
+  const [cardRef] = useIntersectionObserver({ threshold: 0.1 });
 
-  const categoryColors = {
-    web: 'from-blue-600 to-cyan-500',
-    mobile: 'from-green-600 to-emerald-500',
-    desktop: 'from-indigo-600 to-blue-500',
-    academic: 'from-orange-600 to-amber-500',
-  };
-
-  const statusColors = {
-    completed: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
-    'in-progress': 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400',
-    planned: 'bg-gray-100 text-gray-800 dark:bg-gray-700/30 dark:text-gray-400',
-  };
+  // Grid spanning logic
+  const gridSpanClass = isLarge 
+    ? "md:col-span-2 md:row-span-2" 
+    : isHorizontal 
+      ? "md:col-span-2 lg:col-span-2 lg:row-span-1" 
+      : "md:col-span-1 lg:col-span-1 row-span-1";
 
   return (
     <div
       ref={cardRef}
-      className={`group neon-glow glass rounded-2xl border border-gray-200 dark:border-gray-700/50 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-500 transform hover:-translate-y-2 ${
-        featured ? 'lg:col-span-1' : ''
-      } ${
-        isVisible ? `opacity-100 translate-y-0 delay-${index * 100}` : 'opacity-0 translate-y-8'
+      style={{ transitionDelay: `${index * 100}ms` }}
+      className={`group relative bg-[#1a1919] rounded-2xl border border-[#262626]/50 hover:border-[#ba9eff]/40 transition-all duration-500 overflow-hidden flex flex-col ${gridSpanClass} ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
       }`}
     >
-      {/* Project Header */}
-      <div className={`h-32 bg-gradient-to-r rounded-t-2xl ${categoryColors[project.category]} relative overflow-hidden`}>
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <Folder className="w-12 h-12 text-white/80" />
-        </div>
+      {/* Ambient Inner Glow on Hover */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#ba9eff]/0 to-[#ba9eff]/0 group-hover:from-[#ba9eff]/5 group-hover:to-transparent transition-colors duration-700 pointer-events-none" />
+
+      {/* Decorative Grid Lines Overlay */}
+      <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+
+      {/* Content Container (Pushes image to bottom if needed, or splits horizontally) */}
+      <div className={`p-8 flex ${isHorizontal ? 'flex-row items-center gap-8' : 'flex-col'} flex-grow justify-between relative z-10`}>
         
-        {/* Featured Badge */}
-        {featured && (
-          <div className="absolute top-4 right-4">
-            <div className="flex items-center space-x-1 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
-              <Star className="w-4 h-4 text-yellow-300 fill-current" />
-              <span className="text-white text-sm font-medium">Featured</span>
+        <div className={`flex flex-col ${isHorizontal ? 'w-1/2' : 'h-full'}`}>
+          <div className="flex justify-between items-start mb-6">
+            <span className="text-[10px] font-mono font-bold tracking-[0.2em] uppercase text-[#53ddfc] bg-[#003a45]/50 px-3 py-1 rounded-sm border border-[#005969]/30">
+              {project.category}
+            </span>
+            {project.featured && (
+              <Star className="w-5 h-5 text-[#ff86c3] fill-current opacity-80" />
+            )}
+          </div>
+
+          <h3 className={`font-display font-bold text-white mb-4 group-hover:text-[#ba9eff] transition-colors duration-300 ${isLarge ? 'text-4xl' : 'text-2xl'}`}>
+            {project.title}
+          </h3>
+
+          <p className="text-[#adaaaa] text-sm leading-relaxed mb-8 font-sans flex-grow">
+            {isLarge ? project.longDescription : project.description}
+          </p>
+
+          <div>
+            <div className="flex flex-wrap gap-2 mb-8">
+              {project.technologies.slice(0, isLarge ? 6 : 3).map((tech) => (
+                <span
+                  key={tech}
+                  className="px-2.5 py-1 bg-[#131313] text-[#ffffff] border border-[#262626] rounded-md text-xs font-mono font-medium opacity-80 group-hover:opacity-100 group-hover:border-[#494847] transition-all"
+                >
+                  {tech}
+                </span>
+              ))}
+              {project.technologies.length > 3 && !isLarge && (
+                <span className="px-2.5 py-1 text-[#adaaaa] text-xs font-mono font-medium">+{project.technologies.length - 3}</span>
+              )}
+            </div>
+
+            <div className="flex gap-4">
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 bg-[#131313] border border-[#262626] text-white rounded-xl hover:bg-[#ba9eff] hover:text-[#000000] hover:border-[#ba9eff] transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_0_rgba(186,158,255,0)] hover:shadow-[0_8px_20px_rgba(186,158,255,0.2)]"
+                  aria-label="View Source Code"
+                >
+                  <Github size={20} />
+                </a>
+              )}
+              {project.demoUrl && (
+                <a
+                  href={project.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-6 py-3 bg-[linear-gradient(135deg,#53ddfc,#40ceed)] text-[#003a45] font-bold text-sm rounded-xl transform hover:-translate-y-1 shadow-[0_0_0_rgba(83,221,252,0)] hover:shadow-[0_8px_20px_rgba(83,221,252,0.3)] transition-all duration-300"
+                >
+                  <span>Live Matrix</span>
+                  <ExternalLink size={16} />
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Abstract Visual Representation for Bento Card */}
+        {isLarge && (
+          <div className="absolute right-0 bottom-0 w-1/2 h-2/3 opacity-20 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none">
+            <div className="w-full h-full border-t border-l border-[#494847] rounded-tl-[100px] flex items-center justify-center bg-gradient-to-br from-[#1a1919] to-[#0e0e0e]">
+                <Folder className="w-32 h-32 text-[#ba9eff] opacity-50" />
             </div>
           </div>
         )}
 
-        {/* Status Badge */}
-        <div className="absolute top-4 left-4">
-          <span className={`px-3 py-1 rounded-full text-xs font-medium ${statusColors[project.status]}`}>
-            {project.status.replace('-', ' ')}
-          </span>
-        </div>
-      </div>
-
-      {/* Project Content */}
-      <div className="p-6">
-        {/* Title */}
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-teal-500 transition-colors duration-300">
-          {project.title}
-        </h3>
-
-        {/* Description */}
-        <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-          {project.description}
-        </p>
-
-        {/* Technologies */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.technologies.map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1 bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium hover:bg-teal-100 dark:hover:bg-teal-900/30 hover:text-teal-600 dark:hover:text-teal-400 transition-colors duration-200"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-
-        {/* Project Links */}
-        <div className="flex flex-wrap gap-3">
-          {project.githubUrl && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 px-4 py-2 bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600/50 transition-colors duration-200 group/link"
-            >
-              <Github size={16} className="group-hover/link:scale-110 transition-transform duration-200" />
-              <span className="text-sm font-medium">Code</span>
-            </a>
-          )}
-          
-          {project.demoUrl && (
-            <a
-              href={project.demoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-teal-500 to-blue-500 text-white rounded-lg hover:shadow-lg hover:shadow-teal-500/25 transition-all duration-200 group/link"
-            >
-              <ExternalLink size={16} className="group-hover/link:scale-110 transition-transform duration-200" />
-              <span className="text-sm font-medium">Live Demo</span>
-            </a>
-          )}
-        </div>
+        {isHorizontal && (
+          <div className="w-1/2 h-full rounded-xl border border-[#262626] bg-[#0e0e0e] flex items-center justify-center overflow-hidden relative group/img">
+            <div className="absolute inset-0 bg-[#53ddfc]/5 group-hover/img:bg-[#53ddfc]/10 transition-colors duration-500" />
+            <Monitor className="w-24 h-24 text-[#53ddfc] opacity-20 filter blur-[2px] group-hover/img:blur-0 transition-all duration-500" />
+            <div className="absolute bottom-4 right-4 font-mono text-[10px] text-[#53ddfc] tracking-widest opacity-50">SYS.ONLINE</div>
+          </div>
+        )}
       </div>
     </div>
   );

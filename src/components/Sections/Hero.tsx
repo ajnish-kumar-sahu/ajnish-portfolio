@@ -237,7 +237,7 @@ export const Hero: React.FC = () => {
 
             {/* Main Heading with Enhanced Gradient */}
             <h1
-              className={`text-5xl sm:text-6xl lg:text-7xl font-black mb-6 transition-all duration-1000 delay-100 leading-tight ${
+              className={`font-display text-5xl sm:text-6xl lg:text-7xl font-black mb-6 transition-all duration-1000 delay-100 leading-tight tracking-tighter ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
@@ -293,7 +293,9 @@ export const Hero: React.FC = () => {
               }`}
             >
               <a
-                href="https//github.com/ajnish-kumar-sahu"
+                href="https://github.com/ajnish-kumar-sahu"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group p-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg hover:scale-110 transition-all duration-300"
               >
                 <Github
@@ -302,7 +304,9 @@ export const Hero: React.FC = () => {
                 />
               </a>
               <a
-                href="#"
+                href="https://linkedin.com/in/ajnish-kumar-20ag"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group p-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg hover:scale-110 transition-all duration-300"
               >
                 <Linkedin

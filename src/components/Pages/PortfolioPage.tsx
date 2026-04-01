@@ -4,6 +4,7 @@ import { Header } from "../Layout/Header";
 import { Footer } from "../Layout/Footer";
 import { Hero } from "../Sections/Hero";
 import { About } from "../Sections/About";
+import { Journey } from "../Sections/Journey";
 import { Skills } from "../Sections/Skills";
 import { Projects } from "../Sections/Projects";
 import { Services } from "../Sections/Services";
@@ -12,7 +13,7 @@ import { Testimonials } from "../Sections/Testimonials";
 import { Contact } from "../Sections/Contact";
 import { ChatbotWidget } from "../Chatbot/ChatbotWidget";
 import { ScrollProgress } from "../UI/ScrollProgress";
-import { ScrollToTop } from "../UI/ScrollToTop";
+import { FloatingHireMe } from "../UI/FloatingHireMe";
 
 export const PortfolioPage: React.FC = () => {
   return (
@@ -33,6 +34,7 @@ export const PortfolioPage: React.FC = () => {
       <main className="relative">
         <Hero />
         <About />
+        <Journey />
         <Skills />
         <Projects />
         <Services />
@@ -44,8 +46,8 @@ export const PortfolioPage: React.FC = () => {
       {/* Footer */}
       <Footer />
 
-      {/* Scroll To Top */}
-      <ScrollToTop />
+      {/* Floating Hire Me Button */}
+      <FloatingHireMe />
 
       {/* Chatbot Widget */}
       <ChatbotWidget />
