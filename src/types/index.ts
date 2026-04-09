@@ -5,7 +5,7 @@ export interface Skill {
   icon: string;
   description: string;
   proficiency: number;
-  category: 'programming' | 'web' | 'tools' | 'soft';
+  category: "programming" | "web" | "tools" | "soft" | "devops";
 }
 
 export interface Project {
@@ -17,9 +17,9 @@ export interface Project {
   imageUrl?: string;
   demoUrl?: string;
   githubUrl?: string;
-  status: 'completed' | 'in-progress' | 'planned';
+  status: "completed" | "in-progress" | "planned";
   featured: boolean;
-  category: 'web' | 'mobile' | 'desktop' | 'academic';
+  category: "web" | "mobile" | "desktop" | "academic";
 }
 
 export interface ServiceItem {
@@ -65,7 +65,7 @@ export interface Stats {
 }
 
 export interface Theme {
-  mode: 'light' | 'dark';
+  mode: "light" | "dark";
   colors: {
     primary: string;
     secondary: string;
